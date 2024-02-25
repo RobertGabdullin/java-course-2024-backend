@@ -1,6 +1,7 @@
 package edu.java.service;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import java.util.List;
@@ -18,13 +19,14 @@ public class GitHubClient {
 
     public List<GitHubActivity> getListUpdates(String owner, String repo) {
         String url = String.format("/repos/%s/%s/activity", owner, repo);
-        Mono<List<GitHubActivity>> response = webClient.get()
+        List<GitHubActivity> response =
+            webClient.get()
             .uri(url)
             .retrieve()
             .bodyToMono(new ParameterizedTypeReference<List<GitHubActivity>>() {})
-            .log();
+            .block();
 
-        return response.block();
+        return response;
     }
 
 
