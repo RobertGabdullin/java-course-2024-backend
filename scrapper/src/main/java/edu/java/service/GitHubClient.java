@@ -1,10 +1,8 @@
 package edu.java.service;
 
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.web.client.RestClient;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 import java.util.List;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.web.reactive.function.client.WebClient;
 
 public class GitHubClient {
     private final WebClient webClient;
@@ -13,7 +11,7 @@ public class GitHubClient {
         this(webClientBuilder, "https://api.github.com");
     }
 
-    public GitHubClient(WebClient.Builder webClientBuilder, String baseUrl){
+    public GitHubClient(WebClient.Builder webClientBuilder, String baseUrl) {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }
 

@@ -5,7 +5,7 @@ import java.time.OffsetDateTime;
 public class GitHubActivity {
     private OffsetDateTime timestamp;
 
-    public OffsetDateTime getTimestamp(){
+    public OffsetDateTime getTimestamp() {
         return timestamp;
     }
 }

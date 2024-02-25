@@ -1,7 +1,6 @@
 package edu.java.service;
 
 import org.springframework.web.reactive.function.client.WebClient;
-import static java.lang.String.format;
 
 public class StackOverflowClient {
     private final WebClient webClient;
@@ -10,11 +9,11 @@ public class StackOverflowClient {
         this(webClientBuilder, "https://api.stackexchange.com/2.3");
     }
 
-    public StackOverflowClient(WebClient.Builder webClientBuilder, String baseUrl){
+    public StackOverflowClient(WebClient.Builder webClientBuilder, String baseUrl) {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }
 
-    public StackOverflowResponse lastUpdate(long id){
+    public StackOverflowResponse lastUpdate(long id) {
         String url = String.format("/questions/" + id + "?site=stackoverflow");
         StackOverflowResponse response = webClient.get()
             .uri(url)
