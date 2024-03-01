@@ -10,7 +10,6 @@ import com.pengrad.telegrambot.response.BaseResponse;
 import edu.java.bot.configuration.ApplicationConfig;
 import edu.java.bot.service.command.Command;
 import edu.java.bot.service.processor.UserMessageProcessor;
-import edu.java.bot.service.processor.UserMessageProcessorImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +20,8 @@ public class MyBot implements Bot {
     private final TelegramBot bot;
 
     @Autowired
-    public MyBot(ApplicationConfig applicationConfig) {
-        messageProcessor = new UserMessageProcessorImpl();
+    public MyBot(UserMessageProcessor messageProcessor, ApplicationConfig applicationConfig) {
+        this.messageProcessor = messageProcessor;
         bot = new TelegramBot(applicationConfig.telegramToken());
         bot.setUpdatesListener(this);
         setMyCommands();

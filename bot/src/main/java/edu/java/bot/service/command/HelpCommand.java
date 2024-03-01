@@ -8,6 +8,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HelpCommand implements Command {
+
+    private static final String ANSWER = """
+            This bot helps you track resource changes on GitHub and StackOverFlow.
+
+            You can control bot by sending these commands:
+            """;
+
     @Override
     public String command() {
         return "/help";
@@ -20,13 +27,12 @@ public class HelpCommand implements Command {
 
     @Override
     public SendMessage handle(Update update) {
-        String ans = "This bot helps you track resource changes on GitHub and StackOverFlow.\n\n"
-            + "You can control bot by sending these commands:\n";
-        UserMessageProcessorImpl mesProcessor = new UserMessageProcessorImpl();
-        List<? extends Command> commands = mesProcessor.commands();
-        StringBuilder description = new StringBuilder(ans);
+        UserMessageProcessorImpl userMessageProcessor = new UserMessageProcessorImpl();
+        List<? extends Command> commands = userMessageProcessor.commands();
+        StringBuilder description = new StringBuilder(ANSWER);
         for (Command command : commands) {
-            description.append(command.command() + " - " + command.description() + '\n');
+            String temp = command.command() + " - " + command.description() + '\n';
+            description.append(temp);
         }
         return new SendMessage(update.message().chat().id(), description.toString());
     }

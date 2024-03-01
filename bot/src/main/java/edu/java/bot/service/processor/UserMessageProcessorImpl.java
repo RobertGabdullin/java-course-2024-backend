@@ -17,7 +17,6 @@ public class UserMessageProcessorImpl implements UserMessageProcessor {
     private final List<Command> commands;
 
     public UserMessageProcessorImpl() {
-        // Initialize the list of commands
         commands = new ArrayList<>();
         commands.add(new StartCommand());
         commands.add(new HelpCommand());
