@@ -2,17 +2,21 @@ package edu.java.bot.service.processor;
 
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
+import edu.java.bot.service.command.Command;
+import edu.java.bot.service.command.HelpCommand;
+import edu.java.bot.service.command.ListCommand;
+import edu.java.bot.service.command.StartCommand;
+import edu.java.bot.service.command.TrackCommand;
+import edu.java.bot.service.command.UntrackCommand;
 import java.util.ArrayList;
-import edu.java.bot.service.command.*;
-import org.springframework.stereotype.Component;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UserMessageProcessorImpl implements UserMessageProcessor {
     private final List<Command> commands;
 
     public UserMessageProcessorImpl() {
-        // Initialize the list of commands
         commands = new ArrayList<>();
         commands.add(new StartCommand());
         commands.add(new HelpCommand());
