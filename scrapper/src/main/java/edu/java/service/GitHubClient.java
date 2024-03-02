@@ -1,14 +1,18 @@
 package edu.java.service;
 
+import edu.java.configuration.ApplicationConfig;
+import edu.java.response.GitHubActivity;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class GitHubClient {
     private final WebClient webClient;
 
-    public GitHubClient(WebClient.Builder webClientBuilder) {
-        this(webClientBuilder, "https://api.github.com");
+    @Autowired
+    public GitHubClient(ApplicationConfig applicationConfig, WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl(applicationConfig.githubBaseUrl()).build();
     }
 
     public GitHubClient(WebClient.Builder webClientBuilder, String baseUrl) {
@@ -19,10 +23,10 @@ public class GitHubClient {
         String url = String.format("/repos/%s/%s/activity", owner, repo);
         List<GitHubActivity> response =
             webClient.get()
-            .uri(url)
-            .retrieve()
-            .bodyToMono(new ParameterizedTypeReference<List<GitHubActivity>>() {})
-            .block();
+                .uri(url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<GitHubActivity>>() {})
+                .block();
 
         return response;
     }

@@ -13,7 +13,7 @@ public class LinkUpdaterScheduler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LinkUpdaterScheduler.class);
 
-    @Scheduled(fixedDelayString = "#{@interval.toMillis()}")
+    @Scheduled(fixedDelayString = "#{@scheduler.interval.toMillis()}")
     public void update() {
         LOGGER.info("Update method is used...");
     }

@@ -1,11 +1,5 @@
-package edu.java.service;
+package edu.java.response;
 
 import java.time.OffsetDateTime;
 
-public class GitHubActivity {
-    private OffsetDateTime timestamp;
-
-    public OffsetDateTime getTimestamp() {
-        return timestamp;
-    }
-}
+public record GitHubActivity(OffsetDateTime timestamp) {}

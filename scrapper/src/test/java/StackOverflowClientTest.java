@@ -1,8 +1,7 @@
-import com.github.tomakehurst.wiremock.WireMockServer;
-import com.github.tomakehurst.wiremock.client.WireMock;
-import edu.java.service.StackOverflowResponse;
+import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
+import edu.java.response.StackOverflowResponse;
 import edu.java.service.StackOverflowClient;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -15,20 +14,18 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+@WireMockTest(httpPort = 8080)
 public class StackOverflowClientTest {
 
-    private WireMockServer wireMockServer;
     private StackOverflowClient client;
 
     @BeforeEach
-    public void SetUp(){
-        wireMockServer = new WireMockServer();
-        wireMockServer.start();
-        WireMock.configureFor("localhost", 8080);
-        client = new StackOverflowClient(WebClient.builder(), wireMockServer.baseUrl());
+    public void setUp(WireMockRuntimeInfo wmRuntimeInfo){
+        client = new StackOverflowClient(WebClient.builder(), wmRuntimeInfo.getHttpBaseUrl());
         stubFor(get(anyUrl())
             .willReturn(aResponse()
                 .withStatus(200)
@@ -36,15 +33,10 @@ public class StackOverflowClientTest {
                 .withBodyFile("stackoverflow_response.json")));
     }
 
-    @AfterEach
-    public void ShutDown(){
-        wireMockServer.stop();
-    }
-
     @Test
     public void testResponse(){
         StackOverflowResponse res = client.lastUpdate(123);
-        wireMockServer.verify(getRequestedFor(urlEqualTo("/questions/123?site=stackoverflow")));
+        verify(getRequestedFor(urlEqualTo("/questions/123?site=stackoverflow")));
         assertNotNull(res);
     }
 

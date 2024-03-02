@@ -1,4 +1,4 @@
-package edu.java.service;
+package edu.java.response;
 
 import java.time.OffsetDateTime;
 import java.util.List;
