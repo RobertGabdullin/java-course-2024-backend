@@ -1,5 +1,6 @@
 package edu.java.bot.controller;
 
+import edu.java.bot.controller.exception.BadRequestException;
 import edu.java.bot.controller.response.ApiErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,10 +10,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ExceptionApiHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleException(Exception ex) {
-        ApiErrorResponse errorResponse = new ApiErrorResponse();
-
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<Object> handleException(BadRequestException ex) {
+        ApiErrorResponse errorResponse = new ApiErrorResponse(
+            "Bad Request",
+            "400",
+            ex.getClass().getSimpleName(),
+            ex.getMessage(),
+            null);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 

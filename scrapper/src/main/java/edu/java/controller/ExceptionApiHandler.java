@@ -13,13 +13,23 @@ public class ExceptionApiHandler {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ApiErrorResponse> handleBadRequestException(BadRequestException ex) {
-        ApiErrorResponse errorResponse = new ApiErrorResponse("Bad Request", "400", ex.getClass().getSimpleName(), ex.getMessage(), null);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(
+            "Bad Request",
+            "400",
+            ex.getClass().getSimpleName(),
+            ex.getMessage(),
+            null);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleNotFoundException(NotFoundException ex) {
-        ApiErrorResponse errorResponse = new ApiErrorResponse("Not Found", "404", ex.getClass().getSimpleName(), ex.getMessage(), null);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(
+            "Not Found",
+            "404",
+            ex.getClass().getSimpleName(),
+            ex.getMessage(),
+            null);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 }
