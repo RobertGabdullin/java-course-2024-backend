@@ -1,6 +1,6 @@
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import edu.java.response.GitHubActivity;
+import edu.java.data_transfer.GitHubActivity;
 import edu.java.service.GitHubClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

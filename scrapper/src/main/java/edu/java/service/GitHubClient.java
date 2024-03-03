@@ -1,7 +1,7 @@
 package edu.java.service;
 
 import edu.java.configuration.ApplicationConfig;
-import edu.java.response.GitHubActivity;
+import edu.java.data_transfer.GitHubActivity;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

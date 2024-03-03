@@ -1,4 +1,4 @@
-package edu.java.response;
+package edu.java.data_transfer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
