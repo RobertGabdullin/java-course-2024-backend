@@ -1,0 +1,21 @@
+{
+    "items":[
+        {
+            "tags":["java","stubbing","wiremock"],
+            "owner":{"account_id":1093673,"reputation":1519,"user_id":1087746,"user_type":"registered","accept_rate":53,"profile_image":"https://www.gravatar.com/avatar/a91659b373d2b4c8f48b295f59f2e3c3?s=256&d=identicon&r=PG","display_name":"Ragini","link":"https://stackoverflow.com/users/1087746/ragini"},
+            "is_answered":true,
+            "view_count":17420,
+            "answer_count":4,
+            "score":19,
+            "last_activity_date":1681305155,
+            "creation_date":1515663648,
+            "last_edit_date":1535361502,
+            "question_id":48203837,
+            "content_license":"CC BY-SA 4.0",
+            "link":"https://stackoverflow.com/questions/48203837/stubbing-with-wiremock-withbodyfile-location-other-than-files",
+            "title":"Stubbing with Wiremock - WithBodyFile Location other than _files"
+        }
+    ],
+    "has_more":true,
+    "quota_max":300,
+    "quota_remaining":280}
