@@ -1,9 +1,9 @@
 package edu.java.controller;
 
 import edu.java.controller.request.AddLinkRequest;
-import edu.java.controller.request.RemoveLinkRequest;
 import edu.java.controller.response.LinkResponse;
 import edu.java.controller.response.ListLinksResponse;
+import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ public class ApiController {
 
     @PostMapping("/tg-chat/{id}")
     public ResponseEntity<Object> registerChat(@PathVariable("id") Long id) {
+        // some logic
         return ResponseEntity.ok("Чат зарегестрирован");
     }
 
@@ -28,7 +29,7 @@ public class ApiController {
     }
 
     @GetMapping(value = "/links", produces = "application/json")
-    public ResponseEntity<ListLinksResponse> getAllLinks(@RequestHeader("Tg-Chat-Id") Long chatId) {
+    public ResponseEntity<Object> getAllLinks(@RequestHeader("Tg-Chat-Id") Long chatId) {
         // ...
         ListLinksResponse res = new ListLinksResponse(null, 1);
         return ResponseEntity.ok().body(res);
@@ -45,9 +46,9 @@ public class ApiController {
     @DeleteMapping(value = "/links", produces = "application/json")
     public ResponseEntity<Object> removeLink(
         @RequestHeader("Tg-Chat-Id") Long chatId,
-        @RequestBody RemoveLinkRequest request) {
+        @RequestHeader("Delete-Link") URI request) {
         // ...
-        LinkResponse res = new LinkResponse(0, "123");
+        LinkResponse res = new LinkResponse(0, URI.create("123"));
         return ResponseEntity.ok().body(res);
     }
 

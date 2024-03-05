@@ -1,6 +1,7 @@
 package edu.java.controller.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.net.URI;
 
 @Schema
-public record AddLinkRequest(String link) {}
+public record AddLinkRequest(URI link) {}
