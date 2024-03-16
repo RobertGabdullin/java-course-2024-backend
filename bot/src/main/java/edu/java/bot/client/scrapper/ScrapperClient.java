@@ -13,10 +13,6 @@ public class ScrapperClient {
     private final static String TGCHATID = "TgChatId";
     private final static String IDURL = "/tg-chat/{id}";
 
-    public ScrapperClient(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8090").build();
-    }
-
     public ScrapperClient(WebClient.Builder webClientBuilder, String baseUrl) {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }

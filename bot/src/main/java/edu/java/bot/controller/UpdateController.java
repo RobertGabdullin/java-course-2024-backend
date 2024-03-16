@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Controller {
+public class UpdateController {
 
     @PostMapping("/updates")
     public ResponseEntity<Object> processUpdate(@RequestBody UpdateRequest linkUpdate) {

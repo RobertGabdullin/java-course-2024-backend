@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ApiController {
+public class ChatController {
 
     @PostMapping("/tg-chat/{id}")
     public ResponseEntity<Object> registerChat(@PathVariable("id") Long id) {

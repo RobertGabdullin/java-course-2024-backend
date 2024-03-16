@@ -10,11 +10,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class GitHubClient {
     private final WebClient webClient;
 
-    @Autowired
-    public GitHubClient(ApplicationConfig applicationConfig, WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl(applicationConfig.githubBaseUrl()).build();
-    }
-
     public GitHubClient(WebClient.Builder webClientBuilder, String baseUrl) {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }

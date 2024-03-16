@@ -9,11 +9,6 @@ public class StackOverflowClient {
 
     private final WebClient webClient;
 
-    @Autowired
-    public StackOverflowClient(ApplicationConfig applicationConfig, WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl(applicationConfig.stackOverflowBaseUrl()).build();
-    }
-
     public StackOverflowClient(WebClient.Builder webClientBuilder, String baseUrl) {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }

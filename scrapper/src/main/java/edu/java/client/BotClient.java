@@ -9,10 +9,6 @@ public class BotClient {
 
     private final WebClient webClient;
 
-    public BotClient(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://localhost:8090").build();
-    }
-
     public BotClient(WebClient.Builder webClientBuilder, String url) {
         this.webClient = webClientBuilder.baseUrl(url).build();
     }
