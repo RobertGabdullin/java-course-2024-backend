@@ -1,9 +1,7 @@
 package edu.java.client;
 
-import edu.java.configuration.ApplicationConfig;
 import edu.java.dto.response.GitHubActivityResponse;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.reactive.function.client.WebClient;
 

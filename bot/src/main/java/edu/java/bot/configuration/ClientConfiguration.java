@@ -17,7 +17,7 @@ public class ClientConfiguration {
     }
 
     @Bean
-    public ScrapperClient scrapperClient(WebClient.Builder webClientBuilder){
+    public ScrapperClient scrapperClient(WebClient.Builder webClientBuilder) {
         return new ScrapperClient(webClientBuilder, applicationConfig.scrapperBaseUrl());
     }
 
