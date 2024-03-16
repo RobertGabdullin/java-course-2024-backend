@@ -1,5 +1,5 @@
-package edu.java.dto;
+package edu.java.dto.response;
 
 import java.time.OffsetDateTime;
 
-public record GitHubActivity(OffsetDateTime timestamp) {}
+public record GitHubActivityResponse(OffsetDateTime timestamp) {}

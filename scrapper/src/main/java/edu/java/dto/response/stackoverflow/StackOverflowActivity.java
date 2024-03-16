@@ -1,4 +1,4 @@
-package edu.java.dto;
+package edu.java.dto.response.stackoverflow;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;

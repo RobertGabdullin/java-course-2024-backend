@@ -1,6 +1,6 @@
 package edu.java.bot.controller;
 
-import edu.java.bot.controller.request.UpdateRequest;
+import edu.java.bot.dto.request.UpdateRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

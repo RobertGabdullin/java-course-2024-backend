@@ -1,4 +1,4 @@
-package edu.java.bot.controller.exception;
+package edu.java.bot.exception;
 
 public class BadRequestException extends RuntimeException {
     public BadRequestException(String message) {

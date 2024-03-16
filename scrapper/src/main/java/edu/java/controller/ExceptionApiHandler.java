@@ -1,8 +1,8 @@
 package edu.java.controller;
 
-import edu.java.controller.exception.BadRequestException;
-import edu.java.controller.exception.NotFoundException;
-import edu.java.controller.response.ApiErrorResponse;
+import edu.java.exception.BadRequestException;
+import edu.java.exception.NotFoundException;
+import edu.java.dto.response.ApiErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

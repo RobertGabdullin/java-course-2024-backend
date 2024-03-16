@@ -1,4 +1,4 @@
-package edu.java.controller.request;
+package edu.java.dto.request;
 
 import java.net.URI;
 import java.util.List;

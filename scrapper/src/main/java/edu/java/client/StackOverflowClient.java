@@ -1,9 +1,8 @@
-package edu.java.service;
+package edu.java.client;
 
 import edu.java.configuration.ApplicationConfig;
-import edu.java.data_transfer.StackOverflowResponse;
+import edu.java.dto.response.stackoverflow.StackOverflowResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class StackOverflowClient {

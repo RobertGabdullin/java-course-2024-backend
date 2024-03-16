@@ -1,6 +1,6 @@
-package edu.java.scrapper_client;
+package edu.java.bot.client.scrapper;
 
-import edu.java.controller.request.AddLinkRequest;
+import edu.java.bot.dto.request.AddLinkRequest;
 import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.BodyInserters;

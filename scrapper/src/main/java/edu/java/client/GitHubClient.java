@@ -1,7 +1,7 @@
-package edu.java.service;
+package edu.java.client;
 
 import edu.java.configuration.ApplicationConfig;
-import edu.java.data_transfer.GitHubActivity;
+import edu.java.dto.response.GitHubActivityResponse;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,13 +19,13 @@ public class GitHubClient {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
     }
 
-    public List<GitHubActivity> getListUpdates(String owner, String repo) {
+    public List<GitHubActivityResponse> getListUpdates(String owner, String repo) {
         String url = String.format("/repos/%s/%s/activity", owner, repo);
-        List<GitHubActivity> response =
+        List<GitHubActivityResponse> response =
             webClient.get()
                 .uri(url)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<GitHubActivity>>() {})
+                .bodyToMono(new ParameterizedTypeReference<List<GitHubActivityResponse>>() {})
                 .block();
 
         return response;

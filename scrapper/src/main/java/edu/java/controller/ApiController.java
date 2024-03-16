@@ -1,8 +1,8 @@
 package edu.java.controller;
 
-import edu.java.controller.request.AddLinkRequest;
-import edu.java.controller.response.LinkResponse;
-import edu.java.controller.response.ListLinksResponse;
+import edu.java.dto.request.AddLinkRequest;
+import edu.java.dto.response.LinkResponse;
+import edu.java.dto.response.ListLinksResponse;
 import java.net.URI;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,4 +1,4 @@
-package edu.java.dto.exception;
+package edu.java.exception;
 
 public class BadRequestException extends RuntimeException {
     public BadRequestException(String message) {

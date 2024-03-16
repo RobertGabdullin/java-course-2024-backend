@@ -1,7 +1,7 @@
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import edu.java.data_transfer.StackOverflowResponse;
-import edu.java.service.StackOverflowClient;
+import edu.java.dto.response.stackoverflow.StackOverflowResponse;
+import edu.java.client.StackOverflowClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;

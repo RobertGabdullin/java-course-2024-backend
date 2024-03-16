@@ -11,8 +11,9 @@ public record ApplicationConfig(
     @NotNull
     Scheduler scheduler,
     String githubBaseUrl,
-    String stackOverflowBaseUrl
+    String stackOverflowBaseUrl,
+    String botBaseUrl
 ) {
-    public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {
-    }
+    public record Scheduler(boolean enable, @NotNull Duration interval, @NotNull Duration forceCheckDelay) {}
+
 }
