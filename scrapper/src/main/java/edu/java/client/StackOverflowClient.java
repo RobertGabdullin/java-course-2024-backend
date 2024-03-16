@@ -3,9 +3,11 @@ package edu.java.service;
 import edu.java.configuration.ApplicationConfig;
 import edu.java.data_transfer.StackOverflowResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.reactive.function.client.WebClient;
 
 public class StackOverflowClient {
+
     private final WebClient webClient;
 
     @Autowired

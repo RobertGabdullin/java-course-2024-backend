@@ -1,4 +1,4 @@
-package edu.java.data_transfer;
+package edu.java.dto;
 
 import java.time.OffsetDateTime;
 

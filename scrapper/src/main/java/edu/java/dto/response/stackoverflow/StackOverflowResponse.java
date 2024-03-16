@@ -1,7 +1,8 @@
-package edu.java.data_transfer;
+package edu.java.dto.response;
 
 import java.time.OffsetDateTime;
 import java.util.List;
+import edu.java.dto.StackOverflowActivity;
 import lombok.Getter;
 
 public class StackOverflowResponse {
