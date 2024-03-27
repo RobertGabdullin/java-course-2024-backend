@@ -1,4 +1,4 @@
-package edu.java.response;
+package edu.java.dto.response.stackoverflow;
 
 import java.time.OffsetDateTime;
 import java.util.List;

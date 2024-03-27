@@ -1,7 +1,7 @@
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.github.tomakehurst.wiremock.junit5.WireMockTest;
-import edu.java.response.GitHubActivity;
-import edu.java.service.GitHubClient;
+import edu.java.dto.response.GitHubActivityResponse;
+import edu.java.client.GitHubClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,7 +29,7 @@ public class GitHubClientTest {
 
     @Test
     public void testResponse(){
-        List<GitHubActivity> response = client.getListUpdates(owner, repo);
+        List<GitHubActivityResponse> response = client.getListUpdates(owner, repo);
         assertNotNull(response);
         assertEquals(2, response.size());
         verify(getRequestedFor(urlEqualTo("/repos/octocat/Hello-World/activity")));
@@ -37,7 +37,7 @@ public class GitHubClientTest {
 
     @Test
     public void testContent() {
-        List<GitHubActivity> response = client.getListUpdates(owner, repo);
+        List<GitHubActivityResponse> response = client.getListUpdates(owner, repo);
         assertEquals(response.getFirst().timestamp(), OffsetDateTime.parse("2011-01-26T19:14:43Z"));
         assertEquals(response.get(1).timestamp(), OffsetDateTime.parse("2012-02-24T19:15:43Z"));
     }

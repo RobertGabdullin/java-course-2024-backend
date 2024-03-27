@@ -1,6 +1,7 @@
 app:
-  githubBaseUrl: https://api.github.com
+  gitHubBaseUrl: https://api.github.com
   stackOverflowBaseUrl: https://api.stackexchange.com/2.3
+  botBaseUrl: http://localhost:8090
   scheduler:
     enable: true
     interval: 10s
@@ -9,6 +10,10 @@ app:
 spring:
   application:
     name: scrapper
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
 
 server:
   port: 8080
