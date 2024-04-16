@@ -3,18 +3,20 @@ package edu.java.domain;
 import edu.java.dto.db.ChatDTO;
 import edu.java.dto.db.ChatLinkDTO;
 import edu.java.dto.db.LinkDTO;
+import java.net.URI;
+import java.time.OffsetDateTime;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import javax.swing.text.StyledEditorKit;
-import java.net.URI;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 @Repository
 public class ChatLinkRepository {
     private final JdbcTemplate jdbcTemplate;
+
+    static final String LINK_ID = "LINK_ID";
+    static final String CHAT_ID = "CHAT_ID";
 
     @Autowired
     LinkRepository linkRepository;
@@ -28,8 +30,9 @@ public class ChatLinkRepository {
     public Boolean add(long chatId, long linkId) {
         String sql = "SELECT COUNT(*) FROM Chat_Link WHERE chat_id = ? AND link_id = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, chatId, linkId);
-        if(count > 0)
+        if (count > 0) {
             return false;
+        }
         jdbcTemplate.update(
             "INSERT INTO Chat_Link (chat_id, link_id) VALUES (?, ?)",
             chatId, linkId);
@@ -44,22 +47,23 @@ public class ChatLinkRepository {
     }
 
     @Transactional
-    public LinkDTO remove(long chatId, URI uri){
+    public LinkDTO remove(long chatId, URI uri) {
         Long id = linkRepository.findId(uri.toString());
-        if (id == null)
+        if (id == null) {
             return null;
+        }
         remove(chatId, id);
         return new LinkDTO(id, uri.toString(), null, null);
     }
 
     @Transactional
     public List<LinkDTO> findAllLinksByChatId(long chatId) {
-        String sql = "SELECT l.link_id, l.url, l.updated_at, l.checked_at " +
-            "FROM Chat_Link cl " +
-            "JOIN Link l ON cl.link_id = l.link_id " +
-            "WHERE cl.chat_id = ?";
+        String sql = "SELECT l.link_id, l.url, l.updated_at, l.checked_at "
+            + "FROM Chat_Link cl "
+            + "JOIN Link l ON cl.link_id = l.link_id "
+            + "WHERE cl.chat_id = ?";
         return jdbcTemplate.query(sql, new Object[]{chatId}, (rs, rowNum) ->
-            new LinkDTO(rs.getLong("link_id"),
+            new LinkDTO(rs.getLong(LINK_ID),
                 rs.getString("url"),
                 rs.getObject("updated_at", OffsetDateTime.class),
                 rs.getObject("checked_at", OffsetDateTime.class))
@@ -67,20 +71,20 @@ public class ChatLinkRepository {
     }
 
     @Transactional
-    public List<ChatDTO> findByLinkId(long linkId){
+    public List<ChatDTO> findByLinkId(long linkId) {
         String sql = "SELECT chat_id FROM Chat_Link WHERE link_id = ?";
         return jdbcTemplate.query(sql, new Object[]{linkId}, (rs, rowNum) ->
-            new ChatDTO(rs.getLong("chat_id"))
+            new ChatDTO(rs.getLong(CHAT_ID))
         );
     }
 
     @Transactional
-    public List<ChatLinkDTO> findAll(){
+    public List<ChatLinkDTO> findAll() {
         return jdbcTemplate.query(
             "SELECT chat_id, link_id FROM Chat_Link",
             (rs, rowNum) -> new ChatLinkDTO(
-                rs.getLong("chat_id"),
-                rs.getLong("link_id")
+                rs.getLong(CHAT_ID),
+                rs.getLong(LINK_ID)
             )
         );
     }

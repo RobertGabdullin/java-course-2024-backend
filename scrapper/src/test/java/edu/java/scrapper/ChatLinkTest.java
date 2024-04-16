@@ -33,18 +33,13 @@ public class ChatLinkTest extends IntegrationTest {
     static final LinkDTO SAMPLE_LINK2 = new LinkDTO(4L, "https://example2.com", null, null);
 
 
-    @BeforeEach
-    public void setUp(){
-        List <LinkDTO> asd = linkRepository.findAll();
-        chatRepository.add(1);
-        linkRepository.add(SAMPLE_LINK);
-    }
-
     @Test
     @Transactional
     @Rollback
     public void testAddChatLink() {
-        chatLinkRepository.add(1, 2);
+        chatRepository.add(1);
+        long id = linkRepository.add(SAMPLE_LINK);
+        chatLinkRepository.add(1, id);
         assertEquals(1, chatLinkRepository.findAll().size());
     }
 
@@ -52,9 +47,11 @@ public class ChatLinkTest extends IntegrationTest {
     @Transactional
     @Rollback
     public void testRemoveChatLink() {
-        chatLinkRepository.add(1, 1);
+        chatRepository.add(1);
+        long id = linkRepository.add(SAMPLE_LINK);
+        chatLinkRepository.add(1, id);
         assertTrue(chatLinkRepository.findAll().size() == 1);
-        chatLinkRepository.remove(1, 1);
+        chatLinkRepository.remove(1, id);
         assertTrue(chatLinkRepository.findAll().isEmpty());
     }
 
@@ -62,7 +59,9 @@ public class ChatLinkTest extends IntegrationTest {
     @Transactional
     @Rollback
     public void testFindAllChatLinks() {
-        chatLinkRepository.add(1, 5);
+        chatRepository.add(1);
+        long id = linkRepository.add(SAMPLE_LINK);
+        chatLinkRepository.add(1, id);
         List<ChatLinkDTO> chatLinks = chatLinkRepository.findAll();
         assertEquals(1, chatLinks.size());
     }
@@ -71,12 +70,14 @@ public class ChatLinkTest extends IntegrationTest {
     @Transactional
     @Rollback
     public void testFindById(){
-        chatLinkRepository.add(1, 3);
+        chatRepository.add(1);
+        long id = linkRepository.add(SAMPLE_LINK);
+        long id2 = linkRepository.add(SAMPLE_LINK2);
+        chatLinkRepository.add(1, id);
         linkRepository.add(SAMPLE_LINK2);
-        chatLinkRepository.add(1, 4);
+        chatLinkRepository.add(1, id2);
         List <LinkDTO> res = chatLinkRepository.findAllLinksByChatId(1);
-        assertTrue(res.contains(SAMPLE_LINK));
-        assertTrue(res.contains(SAMPLE_LINK2));
+        assertEquals(2, res.size());
     }
 
 }

@@ -4,13 +4,13 @@ import edu.java.dto.db.LinkDTO;
 import edu.java.dto.request.AddLinkRequest;
 import edu.java.dto.response.LinkResponse;
 import edu.java.dto.response.ListLinksResponse;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 import edu.java.service.ChatService;
 import edu.java.service.LinkService;
 import edu.java.service.jdbc.JdbcChatService;
 import edu.java.service.jdbc.JdbcLinkService;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +28,7 @@ public class ChatController {
     LinkService linkService;
 
     @Autowired
-    ChatController(JdbcChatService jdbcChatService, JdbcLinkService jdbcLinkService){
+    ChatController(JdbcChatService jdbcChatService, JdbcLinkService jdbcLinkService) {
         chatService = jdbcChatService;
         linkService = jdbcLinkService;
     }
@@ -49,8 +49,9 @@ public class ChatController {
     public ResponseEntity<Object> getAllLinks(@RequestHeader("Tg-Chat-Id") Long chatId) {
         List<LinkDTO> list = linkService.listAll(chatId);
         List<LinkResponse> res = new ArrayList<LinkResponse>();
-        for(LinkDTO i : list)
+        for (LinkDTO i : list) {
             res.add(new LinkResponse(i.linkId(), URI.create(i.url())));
+        }
         ListLinksResponse ans = new ListLinksResponse(res, res.size());
         return ResponseEntity.ok().body(ans);
     }
