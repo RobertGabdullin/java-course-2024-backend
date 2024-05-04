@@ -1,12 +1,16 @@
 package edu.java.scrapper;
 
+import liquibase.Liquibase;
+import liquibase.database.Database;
+import liquibase.database.DatabaseFactory;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.resource.SearchPathResourceAccessor;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Testcontainers;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
-@Testcontainers
 public abstract class IntegrationTest {
     public static PostgreSQLContainer<?> POSTGRES;
 
@@ -20,8 +24,17 @@ public abstract class IntegrationTest {
         runMigrations(POSTGRES);
     }
 
-    private static void runMigrations(JdbcDatabaseContainer<?> c) {
-        // ...
+    private static void runMigrations(PostgreSQLContainer<?> container) {
+        try {
+            Connection connection = DriverManager.getConnection(container.getJdbcUrl(), container.getUsername(), container.getPassword());
+            Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(new JdbcConnection(connection));
+            SearchPathResourceAccessor resourceAccessor = new SearchPathResourceAccessor();
+            resourceAccessor.addResourceAccessor("../migrations");
+            Liquibase liquibase = new Liquibase("../migrations/master.xml", resourceAccessor, database);
+            liquibase.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @DynamicPropertySource
