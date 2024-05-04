@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset RobertGabdullin:3
+--changeset RobertGabdullin:4 runOnChange:true
 CREATE TABLE IF NOT EXISTS Chat_Link (
     chat_id         BIGINT,
     link_id         BIGINT,
